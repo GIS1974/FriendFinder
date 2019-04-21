@@ -1,0 +1,26 @@
+{
+  "name": "FriendFinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GIS1974/FriendFinder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GIS1974/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/GIS1974/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "heroku": "^7.22.10",
+    "path": "^0.12.7"
+  }
+}
