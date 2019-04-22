@@ -1,0 +1,3 @@
+Grab the data from input form in survey.html
+push the user data ("scores" 1...5) into array userData = []
+
