@@ -4,9 +4,10 @@
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
 
-var friendsData = require("../data/friends");
+var friendsData = require("../data/friends"),
+    index = 0;
 
-var userDataArray = require("../data/friends");
+// var userDataArray = require("../data/friends");
 
 
 // var waitListData = require("../data/waitinglistData");
@@ -27,6 +28,21 @@ module.exports = function (app) {
         res.json(friendsData);
     });
 
+    // *******************************************************************************
+    app.get("/api/friends/:name", function (req, res) {
+        for (var i = 0; i < friendsData.length; i++) {
+            if (friendsData[i].name === req.params.name) {
+                res.json(friendsData[i]);
+            }
+        }
+    });
+
+    app.post("/api/user/clear", function () {
+        friendsData.pop;
+    });
+    // *
+    // *******************************************************************************
+
     //   app.get("/api/waitlist", function(req, res) {
     //     res.json(waitListData);
     //   });
@@ -44,33 +60,58 @@ module.exports = function (app) {
         // It will do this by sending out the value "true" have a table
         // req.body is available since we're using the body parsing middleware
 
+        // friendsData[friendsData.length - 1].name = "";
+        // friendsData.pop;
+
         friendsData.push(req.body);
 
-        // for (var i = 0; i < friendsData.length; i++) {
-        //     var totalScore = 0;
-        //     for (var a = 0; a < friendsData.scores.length; a++) {
-        //         totalScore += friendsData.scores[a];
-        //     }
-        //     console.log(totalScore);
-        // }
+        //  Create an array containing user's scores
+        var userScoresArray = friendsData[friendsData.length - 1].scores;
 
+        // *******************************************************************************
+        function userScoresArrayInt() {
+            var tempArray = [];
+            for (i = 0; i < userScoresArray.length; i++) {
+                tempArray.push(parseInt(userScoresArray[i]));
+            }
+            return tempArray;
+        }
+        console.log("User scores: [" + userScoresArrayInt() + "]");
+        // *******************************************************************************
 
+        diff();
 
-        // for (var i = 1; i < res.scores; i++) {
+        // Create a loop through the friendData array except the last which represents user's data
+        // this loop needed to calculate total difference between each friend's scores and user's scores
+        function diff() {
+            var totalDiffArray = [];
+            for (i = 0; i < (friendsData.length - 1); i++) {
+                // Loop through each friendsData[i].scores array
+                var diffArray = [];
+                for (x = 0; x < friendsData[i].scores.length; x++) {
+                    diffArray.push(Math.abs(friendsData[i].scores[x] - userScoresArray[x]));
+                };
+                console.log(diffArray);
+                // Sum of array
+                totalDiff = diffArray.reduce(add);
+                function add(accumulator, a) {
+                    return accumulator + a;
+                };
+                console.log(totalDiff);
+                totalDiffArray.push(parseInt(totalDiff));
+            };
+            console.log(totalDiffArray);
 
-        //     userDataArray.push(res.scores);
+            index = totalDiffArray.indexOf(Math.min(...totalDiffArray));
+            // console.log("Min value: " + Math.min(totalDiffArray));
+            console.log("Best friens's index: " + index);
+        };
+        res.send(friendsData[index]);
 
-        //     console.log(userDataArray);
-        // };
+        friendsData.pop; //??????????????????????????????????
 
-        // if (tableData.length < 5) {
-        //   tableData.push(req.body);
-        //   res.json(true);
-        // }
-        // else {
-        //   waitListData.push(req.body);
-        //   res.json(false);
-        // }
+        // res.send(friendData[match]);
+
     });
 
     // ---------------------------------------------------------------------------
