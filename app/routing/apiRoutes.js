@@ -37,9 +37,9 @@ module.exports = function (app) {
         }
     });
 
-    app.post("/api/user/clear", function () {
-        friendsData.pop;
-    });
+    // app.post("/api/user/clear", function () {
+    //     friendsData.pop;
+    // });
     // *
     // *******************************************************************************
 
@@ -83,6 +83,9 @@ module.exports = function (app) {
 
         // Create a loop through the friendData array except the last which represents user's data
         // this loop needed to calculate total difference between each friend's scores and user's scores
+
+        res.send(friendsData[index]);
+
         function diff() {
             var totalDiffArray = [];
             for (i = 0; i < (friendsData.length - 1); i++) {
@@ -106,12 +109,7 @@ module.exports = function (app) {
             // console.log("Min value: " + Math.min(totalDiffArray));
             console.log("Best friens's index: " + index);
         };
-        res.send(friendsData[index]);
-
-        friendsData.pop; //??????????????????????????????????
-
-        // res.send(friendData[match]);
-
+        // friendsData.pop; //??????????????????????????????????
     });
 
     // ---------------------------------------------------------------------------

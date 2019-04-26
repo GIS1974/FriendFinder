@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="../data/friends.js"></script>
+    <!-- <script src="../data/friends.js"></script> -->
 
     <!-- Font Awesome Glyphicons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -285,36 +285,24 @@
                     // Show the modal with the best match
                     $("#results-modal").modal("toggle");
 
-                    // $("#pic").append("<p>test</p>");
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("#q1").val("");
+                    $("#q2").val("");
+                    $("#q3").val("");
+                    $("#q4").val("");
+                    $("#q5").val("");
+                    $("#q6").val("");
+                    $("#q7").val("");
+                    $("#q8").val("");
+                    $("#q9").val("");
+                    $("#q10").val("");
 
                 });
             } else {
                 alert("Please fill out all fields before submitting!");
             }
-            $(".form-control").reset(); //??????????????????????????????
-
-
-            $.post("/api/user/clear", function () {
-                }); //??????????????????????????????
-
-
-
         });
-
-        // function reset() {
-        //     $(".form-control").reset(),
-        //     // $("#photo").reset(),
-        //     // $("#q1").reset(),
-        //     // $("#q2").reset(),
-        //     // $("#q3").reset(),
-        //     //     $("#q4").reset(),
-        //     //     $("#q5").reset(),
-        //     //     $("#q6").reset(),
-        //     //     $("#q7").reset(),
-        //     //     $("#q8").reset(),
-        //     //     $("#q9").reset(),
-        //     //     $("#q10").reset()
-        // };
 
     </script>
 </body>
