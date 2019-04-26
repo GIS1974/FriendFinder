@@ -16,8 +16,4 @@ var friendsData = [
     }
 ];
 
-// var userDataArray = [];
-
 module.exports = friendsData;
-
-// module.exports = userDataArray;
